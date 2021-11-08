@@ -1,0 +1,48 @@
+===Database smart_containers
+
+== Table structure for table Contenedor_inteligente
+
+|------
+|Column|Type|Null|Default
+|------
+|//**Bote_id**//|varchar(255)|No|
+|Ubicacion|varchar(255)|Yes|NULL
+|Nivel_basura|int|Yes|NULL
+== Dumping data for table Contenedor_inteligente
+
+== Table structure for table Historial
+
+|------
+|Column|Type|Null|Default
+|------
+|//**Operacion_id**//|varchar(255)|No|
+|Bote_id|varchar(255)|Yes|NULL
+|Operador_id|varchar(255)|Yes|NULL
+|Fecha|varchar(255)|Yes|NULL
+|Hora|varchar(255)|Yes|NULL
+|Comentarios|varchar(255)|Yes|NULL
+== Dumping data for table Historial
+
+== Table structure for table Operador
+
+|------
+|Column|Type|Null|Default
+|------
+|//**Operador_id**//|varchar(255)|No|
+|Nombre|varchar(255)|Yes|NULL
+|Contrasena|varchar(255)|Yes|NULL
+|Telefono|varchar(255)|Yes|NULL
+|Edad|int|Yes|NULL
+|Tipo_operador|varchar(255)|Yes|NULL
+|Correo|varchar(255)|Yes|NULL
+== Dumping data for table Operador
+
+== Table structure for table Sistema_inteligente
+
+|------
+|Column|Type|Null|Default
+|------
+|//**Raspberry_id**//|varchar(255)|No|
+|Estado_sensores|tinyint(1)|Yes|NULL
+|Bote_id|varchar(255)|Yes|NULL
+== Dumping data for table Sistema_inteligente
