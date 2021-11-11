@@ -1,0 +1,38 @@
+#!/bin/sh
+
+file=$1
+table=$(head -n 1 $file)
+tail -n +2 $file > $file.tmp && mv -f $file.tmp $file
+
+case $table in
+	Operador)
+		while IFS=, read op name pass tel age type mail; do
+			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Operador (Operador_id, Nombre, Contrasena, Telefono, Edad, Tipo_operador, Correo) VALUES ('$op', '$name','$pass','$tel',$age,'$type','$mail')"
+		done < $file
+		;;
+
+	Historial)
+		while IFS=, read opn_id boteid optr_id date hour comm; do
+			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Historial (Operacion_id, Bote_id, Operador_id, Fecha, Hora, Comentarios) VALUES ('$opn_id', '$boteid','$optr_id','$date', '$hour','$comm')"
+		done < $file
+		;;
+
+	Contenedor)
+		while IFS=, read boteid location level; do
+			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Contenedor_inteligente (Bote_id, Ubicacion, Nivel_basura) VALUES ('$boteid', '$location',$level)"
+		done < $file
+		;;
+
+	Sistema)
+		while IFS=, read rid ste boteid; do
+			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Sistema_inteligente (Raspberry_id, Estado_sensores, Bote_id) VALUES ('$rid', $ste,'$boteid')"
+		done < $file
+		;;
+
+	*)
+		echo "Something is wrong!"
+esac
+
+if [ -f "*.tmp" ]; then
+	rm *.tmp
+fi
