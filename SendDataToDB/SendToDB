@@ -1,38 +1,89 @@
 #!/bin/sh
 
-file=$1
-table=$(head -n 1 $file)
-tail -n +2 $file > $file.tmp && mv -f $file.tmp $file
+############################################################################################################
+#					    Wrapper Script       					   #
+############################################################################################################
 
-case $table in
-	Operador)
-		while IFS=, read op name pass tel age type mail; do
-			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Operador (Operador_id, Nombre, Contrasena, Telefono, Edad, Tipo_operador, Correo) VALUES ('$op', '$name','$pass','$tel',$age,'$type','$mail')"
-		done < $file
-		;;
+# Script functions
 
-	Historial)
-		while IFS=, read opn_id boteid optr_id date hour comm; do
-			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Historial (Operacion_id, Bote_id, Operador_id, Fecha, Hora, Comentarios) VALUES ('$opn_id', '$boteid','$optr_id','$date', '$hour','$comm')"
-		done < $file
-		;;
+Help() # Help function
+{
+	echo "Usage: SendToDB [OPTIONS] ... [FILE] ..."
+	echo
+	echo "Sends personalized data.csv file to MYSQL Server in the cloud."
+	echo
+	echo "Options for sending data to EzIoT MYSQL's Database."
+	echo "	-d, --data-file		specific file for sending to database, default"
+	echo "	-c, --credentials	file of credentials for the database"
+	echo
+	echo "	-h, --help		shows this help and exit"
+	echo "	-v, --version		displays current version of script"
 
-	Contenedor)
-		while IFS=, read boteid location level; do
-			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Contenedor_inteligente (Bote_id, Ubicacion, Nivel_basura) VALUES ('$boteid', '$location',$level)"
-		done < $file
-		;;
+}
 
-	Sistema)
-		while IFS=, read rid ste boteid; do
-			sudo mysql -h [HOST] -u [USER] -P [PORT] --password='[PASSWORD]' -D smart_containers -e "INSERT INTO Sistema_inteligente (Raspberry_id, Estado_sensores, Bote_id) VALUES ('$rid', $ste,'$boteid')"
-		done < $file
-		;;
+Extract_credentials()
+{
+	user=$(sed '1q;d' $credentials)
+	port=$(sed '2q;d' $credentials)
+	ip=$(sed '3q;d' $credentials)
+	password=$(sed '4q;d' $credentials)
+	database=$(sed '5q;d' $credentials)
+}
 
-	*)
-		echo "Something is wrong!"
-esac
+main()
+{
+	ls /tmp/SendToDB.tmp && credentials=/tmp/SendToDB.tmp || cp $credentials /tmp/SendToDB.tmp
+	Extract_credentials
 
-if [ -f "*.tmp" ]; then
-	rm *.tmp
+	table=$(head -n 1 $file)
+
+	# Case for any data.csv file passed and whether is valid or not
+	case $table in
+		Operador)
+			while IFS=, read op name pass tel age type mail; do
+				sudo mysql -h $ip -u $user -P 5231 --password="$password" -D $database -e "INSERT INTO Operador (Operador_id, Nombre, Contrasena, Telefono, Edad, Tipo_operador, Correo) VALUES ('$op', '$name','$pass','$tel',$age,'$type','$mail')"
+			done < <(tail -n +3 $file)
+			;;
+
+		Historial)
+			while IFS=, read opn_id boteid optr_id date hour comm; do
+				sudo mysql -h $ip -u $user -P 5231 --password="$password" -D $database -e "INSERT INTO Historial (Operacion_id, Bote_id, Operador_id, Fecha, Hora, Comentarios) VALUES ('$opn_id', '$boteid','$optr_id','$date', '$hour','$comm')"
+			done < <(tail -n +3 $file)
+			;;
+
+		Contenedor)
+			while IFS=, read boteid location level; do
+					sudo mysql -h $ip -u $user -P 5231 --password="$password" -D $database -e "INSERT INTO Contenedor_inteligente (Bote_id, Ubicacion, Nivel_basura) VALUES ('$boteid', '$location',$level)"
+
+			done < <(tail -n +3 $file)
+			;;
+
+		Sistema)
+			while IFS=, read rid ste boteid; do
+				sudo mysql -h $ip -u $user -P 5231 --password="$password" -D $database -e "INSERT INTO Sistema_inteligente (Raspberry_id, Estado_sensores, Bote_id) VALUES ('$rid', $ste,'$boteid')"
+			done < <(tail -n +3 $file)
+			;;
+
+		*)
+			echo "Something is wrong with the data inputted"
+	esac
+}
+options=$(getopt -o "c:d:vh" -l "credentials:,data:,version,help" -- "$@")
+
+if [[ $? -ne 0 ]]; then
+    exit 1;
 fi
+
+eval set -- "$options"
+while true; do
+	case $1 in
+		-c | --credentials) credentials=$2; shift 2;;
+		-d | --data) file=$2; shift 2;;
+		-h | --help) Help; exit 0;;
+		-v | --version) echo "1.0.3"; exit 0;;
+    		--) shift; break;;
+		*) echo "Invalid option. Try SendToDBH -h or SendToDB --help for more information."; exit 1;;
+	esac
+done
+
+main
