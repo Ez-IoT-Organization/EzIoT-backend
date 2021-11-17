@@ -7,3 +7,6 @@ Added a linux bash script for raspberry pi's to send data to database by passing
 The used example *.csv files were added to test the data. Remember to add them in order: Data, Data2, Data3.
 
 Password and ip address were removed from the script
+
+## Update Nov 16 2021
+Updated bash script for raspberry that sends data to database.
