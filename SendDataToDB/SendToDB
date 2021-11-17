@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ############################################################################################################
 #					    Wrapper Script       					   #
@@ -32,7 +32,7 @@ Extract_credentials()
 
 main()
 {
-	ls /tmp/SendToDB.tmp && credentials=/tmp/SendToDB.tmp || cp $credentials /tmp/SendToDB.tmp
+	test -f /tmp/SendToDB.tmp && credentials=/tmp/SendToDB.tmp || cp $credentials /tmp/SendToDB.tmp
 	Extract_credentials
 
 	table=$(head -n 1 $file)
@@ -67,11 +67,14 @@ main()
 		*)
 			echo "Something is wrong with the data inputted"
 	esac
+	exit 0;
 }
+
 options=$(getopt -o "c:d:vh" -l "credentials:,data:,version,help" -- "$@")
 
-if [[ $? -ne 0 ]]; then
-    exit 1;
+if [ -z $@ 2>/dev/null ]; then
+	echo "Missing arguments. Try SendToDB -h or SendToDB --help for more information." ; exit 1
+
 fi
 
 eval set -- "$options"
@@ -79,11 +82,19 @@ while true; do
 	case $1 in
 		-c | --credentials) credentials=$2; shift 2;;
 		-d | --data) file=$2; shift 2;;
-		-h | --help) Help; exit 0;;
-		-v | --version) echo "1.0.3"; exit 0;;
+		-h | --help) Help; exit 1;;
+		-v | --version) echo "1.0.3"; exit 1;;
     		--) shift; break;;
-		*) echo "Invalid option. Try SendToDBH -h or SendToDB --help for more information."; exit 1;;
+		*) echo "Invalid option. Try SendToDB -h or SendToDB --help for more information." ; exit 1;;
 	esac
 done
 
+# If file is empty
+[ -z $file ] && echo "Data missing. Try SendToDB -h or SendToDB --help for more information." && exit 1
+
+# If no credentials passed and (but) tmp exist
+[ -z $credentials ] && [ -f /tmp/SendToDB.tmp ] && main
+[ -z $credentials ] && echo "Credentials missing. Try SendToDB -h or SendToDB --help for more information." && exit 1
+
+# If credentials exist
 main
