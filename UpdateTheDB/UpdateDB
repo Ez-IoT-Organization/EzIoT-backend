@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while true
+do
+	mosquitto_sub -h localhost -t "Sensor" -C 1
+	echo "A"
+done
+
