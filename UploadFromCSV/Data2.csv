@@ -1,5 +1,13 @@
 Contenedor
-Bote ID | Ubicacion | Estatus
-B1,Salon1,1
-B2,Salon2,1
-B3,Salon3,2
+Bote ID | Ubicacion | Estatus(Funciona)
+Bote_cedetec,x=19.2836 | y=-99.1352,0
+Bote_biblioteca,x=19.2842 | y=-99.1352,0
+Bote_edificio1.1,x=19.2851 | y=-99.1360,0
+Bote_edificio1.2,x=19.2851 | y=-99.1360,0
+Bote_edificio1.3,x=19.2851 | y=-99.1360,0
+Bote_edificio1.4,x=19.2851 | y=-99.1360,0
+Bote_edificio2.1,x=19.2848 | y=-99.1344,0
+Bote_edificio2.2,x=19.2848 | y=-99.1344,0
+Bote_edificio2.3,x=19.2848 | y=-99.1344,0
+Bote_edificio2.4,x=19.2848 | y=-99.1344,0
+

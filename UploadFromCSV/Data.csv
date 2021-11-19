@@ -1,7 +1,12 @@
 Operador
-Operador_ID | Nombre | Contrasena | NumOp | Tipo | Correo
-Operador1,Nombre1,contrasena1,1,12,admin,admin1@gmail.com
-Operador2,Nombre2,Contrasena2,2,24,admin,admin2@gmail.com
-Operador3,Nombre3,Contrasena3,3,21,user,user1@gmail.com
-Operador4,Nombre4,Contrasena4,4,21,user,user2@gmail.com
-Operador5,Nombre5,Contrasena5,5,20,user,user3@gmail.com
+Operador_ID | Nombre | Contrasena | NumTel | Tipo | Correo
+OP0,Jose Rodriguez,contrasena1,5342139022,12,admin,admin1@gmail.com
+OP1,Javier Lopez,Contrasena2,9312492323,24,admin,admin2@gmail.com
+OP2,Angelica Agusto,Contrasena3,8712342194,21,user,user1@gmail.com
+OP3,Rafael Montoya,Contrasena4,8421480281,21,user,user2@gmail.com
+OP4,Emiliano Carranza,Contrasena5,3942019281,20,user,user3@gmail.com
+OP5,Francisco Gonzalez,contrasena6,4829431729,62,admin,user4@gmail.com
+OP6,Jesus Rosas,Contrasena7,4392891239,24,admin,user5@gmail.com
+OP7,Jose Vives,Contrasena8,9234942812,21,user,user6@gmail.com
+OP8,Ivana Martinez,Contrasena9,8392129402,21,user,user7@gmail.com
+OP9,Aranza Ramirez,Contrasena10,9281234821,20,user,user8@gmail.com
