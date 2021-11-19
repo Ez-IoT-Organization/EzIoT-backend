@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo mysql -u DBRootManager -P 5231 -D smart_containers --password="db2021A@*" --xml -e "SELECT * FROM Contenedor_inteligente" 2>/dev/null > /tmp/contenedor.xml 
+sudo mysql -u DBRootManager -P C -D smart_containers --password=B --xml -e A 2>/dev/null > /tmp/contenedor.xml 
 # Generate json and pass it to the web page
 node convert.js | sudo tee /var/www/html/jsons/data.json >/dev/null
