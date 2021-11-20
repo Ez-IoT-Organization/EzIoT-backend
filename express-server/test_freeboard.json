@@ -1,41 +1,168 @@
-[{
-  "bote": "1",
-  "ubicacion": "19.283093207526942, -99.13738877457311",
-  "cantidad": "10"
-},
-  {
-    "bote": "2",
-    "ubicacion": "19.285184, -99.136693",
-    "cantidad": "12"
-  },
-  {
-    "bote": "3",
-    "ubicacion": "19.284953825776586, -99.13477667077987",
-    "cantidad": "90"
-  },
-  {
-    "bote": "4",
-    "ubicacion": "19.284293344782263, -99.1333227171024",
-    "cantidad": "50"
-  },
-  {
-    "bote": "5",
-    "ubicacion": "19.2875993921056, -99.14196770696856",
-    "cantidad": "55"
-  },
-  {
-    "bote": "6",
-    "ubicacion": "19.286437255606057, -99.14313861507185",
-    "cantidad": "36"
-  },
-  {
-    "bote": "7",
-    "ubicacion": "19.28519251880866, -99.14119847671535",
-    "cantidad": "78"
-  },
-  {
-    "bote": "8",
-    "ubicacion": "19.283321461601393, -99.1343248570155",
-    "cantidad": "12"
+{
+  "resultset": {
+    "statement": "SELECT * FROM Contenedor_inteligente ",
+    "xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "row": [
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_biblioteca"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2842 | y=-99.1352"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.968"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_cedetec"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2836 | y=-99.1352"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.595"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio1.1"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2851 | y=-99.1360"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.469"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio1.2"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2851 | y=-99.1360"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.74"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio1.3"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2851 | y=-99.1360"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.589"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio1.4"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2851 | y=-99.1360"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.935"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio2.1"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2848 | y=-99.1344"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.626"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio2.2"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2848 | y=-99.1344"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.882"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio2.3"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2848 | y=-99.1344"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.502"
+          }
+        ]
+      },
+      {
+        "field": [
+          {
+            "name": "Bote_id",
+            "$t": "Bote_edificio2.4"
+          },
+          {
+            "name": "Ubicacion",
+            "$t": "x=19.2848 | y=-99.1344"
+          },
+          {
+            "name": "Nivel_basura",
+            "$t": "0.689"
+          }
+        ]
+      }
+    ]
   }
-]
+}

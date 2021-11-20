@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="07d99dc3-9d41-46a2-92ff-feaa9b9b2b6e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/freeboard/dashboard.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express-server/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/express-server/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/express-server/test_freeboard.json" beforeDir="false" afterPath="$PROJECT_DIR$/express-server/test_freeboard.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/freeboard/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/freeboard/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +39,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/freeboard" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -59,6 +54,7 @@
       <updated>1637196029190</updated>
       <workItem from="1637196031967" duration="4373000" />
       <workItem from="1637254370432" duration="458000" />
+      <workItem from="1637434322633" duration="3392000" />
     </task>
     <servers />
   </component>
