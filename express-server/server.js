@@ -16,15 +16,15 @@ const locationTest = () => {
     const lat = location.split(' | ')[0].split('x=')[1]
     const long = location.split(' | ')[1].split('y=')[1]
     const test = location.split(' | ')[1].split('y=')[1]
-    console.log("lat y long", split1, lat, long, test)
+    //console.log("lat y long", split1, lat, long, test)
 }
-locationTest()
 
-const allLocationsTest = () => {
-    //Didn't work because freeboard does not receive array of values. Only receives one string
-    const lats = jsonDB.map(el => el.ubicacion.split(', ')[0])
-    console.log(lats)
+const percentage = () => {
+    const data = 0.5
+    const per = ((1 - data)*100).toFixed(2)
+    console.log("percentage", per)
 }
+percentage()
 
 app.get('/', cors() ,function(req,res){
     console.log("req /json")

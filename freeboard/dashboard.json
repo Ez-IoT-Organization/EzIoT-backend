@@ -62,7 +62,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 1",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][2][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][2][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -84,7 +84,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 2",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][3][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][3][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -106,7 +106,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 3",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][4][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][4][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -128,7 +128,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 4",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][5][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][5][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -190,7 +190,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 1",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][6][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][6][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -212,7 +212,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 2",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][7][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][7][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -234,7 +234,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 3",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][8][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][8][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -256,7 +256,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "Piso 4",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][9][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][9][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -357,7 +357,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "PB",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][1][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][1][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
@@ -379,7 +379,7 @@
 					"type": "gauge",
 					"settings": {
 						"title": "PB",
-						"value": "datasources[\"express\"][\"resultset\"][\"row\"][0][\"field\"][2][\"$t\"]",
+						"value": "((1-datasources[\"express\"][\"resultset\"][\"row\"][0][\"field\"][2][\"$t\"])*100).toFixed(2)",
 						"units": "%",
 						"min_value": 0,
 						"max_value": 100
