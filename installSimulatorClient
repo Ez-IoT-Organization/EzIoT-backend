@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Ez - IoT simulator installation script
+# This is an installation script for the simulator
+
+# Install dependencies
+echo "Installing dependencies..."
+sudo apt install mosquitto-clients
+
+# Git clone and create .config/ezsim
+git clone https://github.com/Ez-IoT-Organization/EzIoT-backend.git
+mkdir ~/.config/ezsim
+
+# Copy script files to .config/ezsim folder
+cp EzIoT-backend/SoundSim/addNum.py EzIoT-backend/SoundSim/check.py EzIoT-backend/SoundSim/randNum.py ~/.config/ezsim
+
+# Move to /usr/local/bin the SoundPub file 
+sudo mv EzIoT-backend/SoundSim/PubSound /usr/local/bin
+
+# Remove extra
+echo "Installation completed! Deleting unneccesary folders..."
+rm -rf EzIoT-backend/
