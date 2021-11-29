@@ -4,7 +4,7 @@ This is team's Ez IoT backend repository
 ## Installation guide
 To install the PubSound bash functionality use curl:
 ```
-curl -LO https://raw.githubusercontent.com/Ez-IoT-Organization/EzIoT-backend/master/InstallSim \
+curl -LO https://raw.githubusercontent.com/Ez-IoT-Organization/EzIoT-backend/master/InstallSim
 bash InstallSim
 ```
 This will install the neccssary files and make PubSound bash script a command. 
