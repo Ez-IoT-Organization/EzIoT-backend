@@ -4,8 +4,11 @@ This is team's Ez IoT backend repository
 ## Installation guide
 To install the PubSound bash functionality use curl:
 ```
-curl -LO https://raw.githubusercontent.com/Ez-IoT-Organization/EzIoT-backend/master/InstallSim
+curl -LO https://raw.githubusercontent.com/Ez-IoT-Organization/EzIoT-backend/master/InstallSim \
+bash InstallSim
 ```
+
+The previous commands install the file and 
 
 ### Update Nov 11 2021
 Added a linux bash script for raspberry pi's to send data to database by passing a *.csv file.
