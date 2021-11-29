@@ -7,8 +7,7 @@ To install the PubSound bash functionality use curl:
 curl -LO https://raw.githubusercontent.com/Ez-IoT-Organization/EzIoT-backend/master/InstallSim \
 bash InstallSim
 ```
-
-The previous commands install the file and 
+This will install the neccssary files and make PubSound bash script a command. 
 
 ### Update Nov 11 2021
 Added a linux bash script for raspberry pi's to send data to database by passing a *.csv file.
