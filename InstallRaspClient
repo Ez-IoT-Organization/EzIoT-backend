@@ -12,7 +12,7 @@ git clone https://github.com/Ez-IoT-Organization/EzIoT-backend.git
 mkdir ~/.config/ezsim
 
 # Copy script files to .config/ezsim folder
-cp EzIoT-backend/RaspImp/distance.py ~/.config/ezsim
+cp EzIoT-backend/SoundSim/addNum.py EzIoT-backend/SoundSim/check.py EzIoT-backend/SoundSim/randNum.py EzIoT-backend/RaspImp/distance.py ~/.config/ezsim
 
 # Move to /usr/local/bin the SoundPub file 
 sudo mv EzIoT-backend/RaspImp/PublishSensorData /usr/local/bin
