@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Ez - IoT raspberry client installation script
+# This is an installation script for the simulator
+
+# Install dependencies
+echo "Installing dependencies..."
+sudo apt install mosquitto-clients
+
+# Git clone and create .config/ezsim
+git clone https://github.com/Ez-IoT-Organization/EzIoT-backend.git
+mkdir ~/.config/ezsim
+
+# Copy script files to .config/ezsim folder
+cp EzIoT-backend/RaspImp/distance.py ~/.config/ezsim
+
+# Move to /usr/local/bin the SoundPub file 
+sudo mv EzIoT-backend/RaspImp/PublishSensorData /usr/local/bin
+
+# Remove extra
+echo "Installation completed! Deleting unneccesary folders..."
+rm -rf EzIoT-backend/
