@@ -9,6 +9,12 @@ bash InstallSim
 ```
 This will install the neccssary files and make PubSound bash script a command. 
 
+To install the raspberry client for sending real time data to a web server use the following commands:
+```
+curl -LO https://raw.githubusercontent.com/Ez-IoT-Organization/EzIoT-backend/master/InstallRaspClient
+bash InstallRaspClient
+```
+
 ### Update Nov 11 2021
 Added a linux bash script for raspberry pi's to send data to database by passing a *.csv file.
 
