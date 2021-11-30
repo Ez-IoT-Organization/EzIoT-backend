@@ -1,0 +1,82 @@
+############################################################################################################
+#                                           Wrapper Script						   #
+############################################################################################################
+# Script functions
+
+Help() # Help function
+{
+	echo "Usage: PublishSensorData [OPTIONS] ... [FILE] ..."
+        echo
+        echo "Sends real time data from the raspberry pi to the server."
+        echo
+        echo "Options for publishing the random data."
+        echo "  -t, --time-inverval     time that it takes to send the data. Default will be 30 seconds."
+        echo "  -c, --credentials       file of credentials for the remote machine"
+        echo
+        echo "  -h, --help              shows this help menu and exit"
+        echo "  -v, --version           displays current version of script"
+}
+
+Extract_credentials()
+{
+        ip=$(sed '1q;d' $credentials)
+	publisher=$(sed '2q;d' $credentials)
+}
+
+main()
+{
+        test -f /tmp/PublishSensorData.tmp && credentials=/tmp/PublishSensorData.tmp || cp $credentials /tmp/PublishSensorData.tmp
+	[ -z $id ] || [ -z $publisher ] && Extract_credentials
+
+	while true
+	do
+
+		reading=$(python3 ~/.config/ezsim/distance.py)
+
+
+		cF=$(python3 ~/.config/ezsim/check.py $reading)
+		[[ $cF == "done" ]] && break
+
+		echo "Sensor reading: $reading"
+
+		# Publish data to server using mqtt
+		mosquitto_pub -h $ip -t "Sensor" -m "$publisher,$reading"
+
+		sleep $time
+	done
+
+	mosquitto_pub -h $ip -t "Sensor" -m "$publisher,0"
+	echo "The trash is full!"
+}
+
+
+options=$(getopt -o "t:c:i:p:vh" -l "time:,credentials:,ip:,publisher:version,help" -- "$@" )
+
+if [ -z $@ 2>/dev/null ]; then
+        echo "Missing arguments. Try PubSound -h or PubSound --help for more information." ; exit 1
+fi
+
+eval set -- "$options"
+while true; do
+        case $1 in
+                -c | --credentials) credentials=$2; shift 2;;
+                -t | --time) time=$2; shift 2;;
+		-p | --publisher) publisher=$2;;
+		-i | --ip) ip=$2;;
+                -h | --help) Help; exit 1;;
+                -v | --version) echo "1.0.4"; exit 1;;
+                --) shift; break;;
+                *) echo "Invalid option. Try PubSound -h or PubSound --help for more information." ; exit 1;;
+        esac
+done
+
+# If time is empty
+[ -z $time ] && time=30
+
+# If no credentials passed but tmp exist
+[ -z $credentials ] && [  ]
+[ -z $credentials ] && [ -f /tmp/PubSound.tmp ] && main
+[ -z $credentials ] && echo "Credentials missing. Try PublishSensorData -h or PublishSensorData --help for more information." && exit 1
+
+# If credentials exist
+main
