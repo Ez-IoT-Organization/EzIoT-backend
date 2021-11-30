@@ -1,5 +1,5 @@
 import warnings
-from gpiozero import DistanceSencor
+from gpiozero import DistanceSensor
 from time import sleep
 from pythonosc import osc_message_builder
 from pythonosc import udp_client
