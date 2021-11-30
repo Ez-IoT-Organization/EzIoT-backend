@@ -15,7 +15,7 @@ mkdir ~/.config/ezsim
 cp EzIoT-backend/SoundSim/addNum.py EzIoT-backend/SoundSim/check.py EzIoT-backend/SoundSim/randNum.py EzIoT-backend/RaspImp/distance.py ~/.config/ezsim
 
 # Move to /usr/local/bin the SoundPub file 
-sudo mv EzIoT-backend/RaspImp/PublishSensorData /usr/local/bin
+sudo mv EzIoT-backend/RaspImp/PublishSensorData /usr/local/bin && sudo chmod +x /usr/local/bin/PublishSensorData
 
 # Remove extra
 echo "Installation completed! Deleting unneccesary folders..."
