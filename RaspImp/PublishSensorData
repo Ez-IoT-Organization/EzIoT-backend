@@ -33,7 +33,6 @@ main()
 
 		reading=$(python3 ~/.config/ezsim/distance.py)
 
-
 		cF=$(python3 ~/.config/ezsim/check.py $reading)
 		[[ $cF == "done" ]] && break
 
@@ -53,7 +52,7 @@ main()
 options=$(getopt -o "t:c:i:p:vh" -l "time:,credentials:,ip:,publisher:version,help" -- "$@" )
 
 if [ -z $@ 2>/dev/null ]; then
-        echo "Missing arguments. Try PubSound -h or PubSound --help for more information." ; exit 1
+        echo "Missing arguments. Try PublishSensorData -h or PublishSensorData --help for more information." ; exit 1
 fi
 
 eval set -- "$options"
@@ -66,7 +65,7 @@ while true; do
                 -h | --help) Help; exit 1;;
                 -v | --version) echo "1.0.4"; exit 1;;
                 --) shift; break;;
-                *) echo "Invalid option. Try PubSound -h or PubSound --help for more information." ; exit 1;;
+                *) echo "Invalid option. Try PublishSensorData -h or PublishSensorData --help for more information." ; exit 1;;
         esac
 done
 
@@ -75,7 +74,7 @@ done
 
 # If no credentials passed but tmp exist
 [ -z $credentials ] && [  ]
-[ -z $credentials ] && [ -f /tmp/PubSound.tmp ] && main
+[ -z $credentials ] && [ -f /tmp/PublishSensorData.tmp ] && main
 [ -z $credentials ] && echo "Credentials missing. Try PublishSensorData -h or PublishSensorData --help for more information." && exit 1
 
 # If credentials exist
