@@ -54,6 +54,7 @@ main()
 
 	mosquitto_pub -h $ip -t "Sensor" -m "$publisher,0"
 	echo "The trash is full!"
+	exit 0
 }
 
 
@@ -82,7 +83,7 @@ done
 
 # If no credentials passed but tmp exist
 [ -z $credentials ] && [ -f /tmp/PubSound.tmp ] && main
-[ -z $credentials ] && echo "Credentials missing. Try SendToDB -h or SendToDB --help for more information." && exit 1
+[ -z $credentials ] && echo "Credentials missing. Try PubSound -h or PubSound --help for more information." && exit 1
 
 # If credentials exist
 main
