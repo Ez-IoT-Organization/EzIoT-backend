@@ -27,5 +27,5 @@ Updated bash script for raspberry that sends data to database.
 
 ### Update Nov 27 2021
 Added installation script for simulating a sensor in a device
-Added installation script for detecting data on a raspberrypi with a sensor [prototype]
+Added installation script for detecting data on a raspberrypi with a sensor
 
