@@ -72,7 +72,7 @@ done
 [ -z $time ] && time=30
 
 # If no credentials passed but tmp exist
-[ -z $credentials ] && [ -f /tmp/PublishSensorData.tmp ] && main
+[ -z $credentials ] && test -f /tmp/PublishSensorData.tmp && main
 [ -z $credentials ] && echo "Credentials missing. Try PublishSensorData -h or PublishSensorData --help for more information." && exit 1
 
 # If credentials exist
