@@ -26,11 +26,10 @@ Extract_credentials()
 main()
 {
         test -f /tmp/PublishSensorData.tmp && credentials=/tmp/PublishSensorData.tmp || cp $credentials /tmp/PublishSensorData.tmp
-	[ -z $id ] || [ -z $publisher ] && Extract_credentials
+	[ -z $ip ] || [ -z $publisher ] && Extract_credentials
 
 	while true
 	do
-
 		reading=$(python3 ~/.config/ezsim/distance.py)
 
 		cF=$(python3 ~/.config/ezsim/check.py $reading)
