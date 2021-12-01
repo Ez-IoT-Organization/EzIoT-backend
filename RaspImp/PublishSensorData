@@ -45,6 +45,7 @@ main()
 
 	mosquitto_pub -h $ip -t "Sensor" -m "$publisher,0"
 	echo "The trash is full!"
+	exit 0
 }
 
 
