@@ -15,6 +15,7 @@ curl -LO https://raw.githubusercontent.com/Ez-IoT-Organization/EzIoT-backend/mas
 bash InstallRaspClient
 ```
 
+## Updates
 ### Update Nov 11 2021
 Added a linux bash script for raspberry pi's to send data to database by passing a *.csv file.
 
