@@ -28,7 +28,7 @@ Extract_credentials()
 
 main()
 {
-        test -f /tmp/PubSound.tmp && credentials=/tmp/PubSound.tmp || cp $credentials /tmp/SendToDB.tmp
+        test -f /tmp/PubSound.tmp && credentials=/tmp/PubSound.tmp || cp $credentials /tmp/PubSound.tmp
 	[ -z $id ] || [ -z $publisher ] && Extract_credentials
 
 	accSum=1
@@ -81,7 +81,6 @@ done
 [ -z $time ] && time=30
 
 # If no credentials passed but tmp exist
-[ -z $credentials ] && [  ]
 [ -z $credentials ] && [ -f /tmp/PubSound.tmp ] && main
 [ -z $credentials ] && echo "Credentials missing. Try SendToDB -h or SendToDB --help for more information." && exit 1
 
