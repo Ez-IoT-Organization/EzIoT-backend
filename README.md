@@ -26,6 +26,7 @@ Password and ip address were removed from the script
 Updated bash script for raspberry that sends data to database.
 
 ### Update Nov 27 2021
-Added installation script for simulating a sensor in a device
+Added installation script for simulating a sensor in a device.
+
 Added installation script for detecting data on a raspberrypi with a sensor
 
