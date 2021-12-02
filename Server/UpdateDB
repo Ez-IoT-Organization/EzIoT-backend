@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo mysql -u $user -P 5231 -D $db --password="$password" --xml -e "SELECT * FROM $tabla" | sudo tee /tmp/contenedor.xml 2>/dev/null
+# Generate json and pass it to the web page
+node /path/to/convert.js 2>/dev/null | sudo tee /path/to/webserver/folder/jsons/data.json
