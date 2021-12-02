@@ -1,0 +1,71 @@
+#!/bin/bash
+
+############################################################################################################
+#                                           Wrapper Script                                                 #
+############################################################################################################
+# Script functions
+
+Help() # Help function
+{
+        echo "Usage: UpdateDB [OPTIONS] ... [FILE] ..."
+        echo
+        echo "Sends personalized data.csv file to MYSQL Server in the cloud."
+        echo
+        echo "Options for updating data to EzIoT MYSQL's Database."
+        echo "  -c, --credentials       file of credentials for the database"
+        echo
+        echo "  -h, --help              shows this help and exit"
+        echo "  -v, --version           displays current version of script"
+}
+
+Extract_credentials()
+{
+        user=$(sed '1q;d' $credentials)
+        port=$(sed '2q;d' $credentials)
+        ip=$(sed '3q;d' $credentials)
+        password=$(sed '4q;d' $credentials)
+        database=$(sed '5q;d' $credentials)
+}
+
+main()
+{
+        test -f /tmp/UpdateDB.tmp && credentials=/tmp/UpdateDB.tmp || cp $credentials /tmp/UpdateDB.tmp
+        Extract_credentials
+
+        while true
+        do
+                msg=$(mosquitto_sub -h localhost -t "Sensor" -C 1)
+                echo $msg
+                IFS=',' read -a FILENAME <<< "$msg"
+                sudo mysql -h $ip -u $user -P 5231 --password="$password" -D $database -e "UPDATE Contenedor_inteligente SET Nivel_basura = ${FILENAME[1]} WHERE Bote_id='${FILENAME[0]}'" 2>/dev/null
+                # Check if 75% of trash the sensor has
+                notify=$(python3 notCheck.py ${FILENAME[1]})
+                [ -z $notify ] && MakeJsonNot 0 || MakeJsonNot 1
+                # Make the json file
+                MakeJsonRepo
+        done
+}
+
+options=$(getopt -o "c:vh" -l "credentials:,version,help" -- "$@")
+
+if [ -z $@ 2>/dev/null ]; then
+        echo "Missing arguments. Try UpdateDB -h or UpdateDB --help for more information." ; exit 1
+fi
+
+eval set -- "$options"
+while true; do
+        case $1 in
+                -c | --credentials) credentials=$2; shift 2;;
+                -h | --help) Help; exit 1;;
+                -v | --version) echo "1.0.2"; exit 1;;
+                --) shift; break;;
+                *) echo "Invalid option. Try UpdateDB -h or UpdateDB --help for more information." ; exit 1;;
+        esac
+done
+
+# If no credentials passed and (but) tmp exist
+[ -z $credentials ] && [ -f /tmp/UpdateDB.tmp ] && main
+[ -z $credentials ] && echo "Credentials missing. Try UpdateDB -h or UpdateDB --help for more information." && exit 1
+
+# If credentials exist
+main
