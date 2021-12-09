@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ez - IoT raspberry client installation script
-# This is an installation script for the simulator, installing the proper dependencies when needed
+# This is an installation script for the raspberry pi, installing the proper dependencies when needed
 
 # Install dependencies
 echo "Installing dependencies..."
