@@ -30,9 +30,9 @@ main()
 
 	while true
 	do
-		reading=$(python3 ~/.config/ezsim/distance.py)
+		reading=$(python3 ~/.config/ezrasp/distance.py)
 
-		cF=$(python3 ~/.config/ezsim/check.py $reading)
+		cF=$(python3 ~/.config/ezrasp/check.py $reading)
 		[[ $cF == "done" ]] && break
 
 		echo "Sensor reading: $reading"
