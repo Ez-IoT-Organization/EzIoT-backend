@@ -5,7 +5,7 @@
 
 # Install dependencies
 echo "Installing dependencies..."
-sudo apt --asume-yes install mosquitto-clients
+sudo apt-get --asume-yes install mosquitto-clients
 
 # Git clone and create .config/ezsim
 git clone https://github.com/Ez-IoT-Organization/EzIoT-backend.git
