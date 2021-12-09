@@ -5,6 +5,7 @@
 
 # Install dependencies
 echo "Installing dependencies..."
+sudo apt-get --asume-yes install git
 sudo apt-get --asume-yes install mosquitto-clients
 
 # Git clone and create .config/ezsim
