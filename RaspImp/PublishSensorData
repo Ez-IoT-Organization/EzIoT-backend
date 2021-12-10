@@ -25,8 +25,16 @@ Extract_credentials()
 
 main()
 {
-        test -f /tmp/PublishSensorData.tmp && credentials=/tmp/PublishSensorData.tmp || cp $credentials /tmp/PublishSensorData.tmp
-	[ -z $ip ] || [ -z $publisher ] && Extract_credentials
+	if [[ $credentials > 1 ]]; then
+		test -f /tmp/PublishSensorData.tmp
+		if [ $? -eq 0 ]; then
+			credentials=/tmp/PublishSensorData.tmp 
+		else
+			cp $credentials /tmp/PublishSensorData.tmp
+			Extract_credentials
+		fi
+
+	fi
 
 	while true
 	do
@@ -69,12 +77,13 @@ while true; do
         esac
 done
 
-# If time is empty
+# 0(true) if time is empty
 [ -z $time ] && time=30
 
 # If no credentials passed but tmp exist
-[ -z $credentials ] && test -f /tmp/PublishSensorData.tmp && main
-[ -z $credentials ] && echo "Credentials missing. Try PublishSensorData -h or PublishSensorData --help for more information." && exit 1
+[ -z $credentials ] && test -f /tmp/PubSound.tmp && main
+# If ip or publisher don't exist then error message
+[ -z $ip ] || [ -z $publisher ] && echo "Any of the credentials missing. Try PublishSensorData -h or PublishSensorData --help for more information." && exit 1
 
 # If credentials exist
 main
