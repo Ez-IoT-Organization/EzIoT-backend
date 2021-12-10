@@ -28,8 +28,17 @@ Extract_credentials()
 
 main()
 {
-        test -f /tmp/PubSound.tmp && credentials=/tmp/PubSound.tmp || cp $credentials /tmp/PubSound.tmp
-	[ -z $id ] || [ -z $publisher ] && Extract_credentials
+
+	if [[ $credentials > 1 ]]; then
+		test -f /tmp/PubSound.tmp
+		if [ $? -eq 0 ]; then
+			credentials=/tmp/PubSound.tmp 
+		else
+			cp $credentials /tmp/PubSound.tmp
+			Extract_credentials
+		fi
+
+	fi
 
 	accSum=1
 	while true
@@ -41,7 +50,7 @@ main()
 		echo "Sensor reading: $accSum"
 
 		# Publish data to server using mqtt
-		mosquitto_pub -h $ip -t "Sensor" -m "$publisher,$accSum"
+		mosquitto_pub -h $ip -t Sensor -m "$publisher,$accSum"
 
 		# Gen random number between 0.1 and 0.2 (3 decimals)
 		rand=$(python3 ~/.config/ezsim/randNum.py)
@@ -56,8 +65,6 @@ main()
 	echo "The trash is full!"
 	exit 0
 }
-
-
 options=$(getopt -o "t:c:i:p:vh" -l "time:,credentials:,ip:,publisher:version,help" -- "$@" )
 
 if [ -z $@ 2>/dev/null ]; then
@@ -66,11 +73,12 @@ fi
 
 eval set -- "$options"
 while true; do
+	echo $otions
         case $1 in
                 -c | --credentials) credentials=$2; shift 2;;
                 -t | --time) time=$2; shift 2;;
-		-p | --publisher) publisher=$2;;
-		-i | --ip) ip=$2;;
+		-p | --publisher) publisher=$2; shift 2;;
+		-i | --ip) ip=$2; shift 2;;
                 -h | --help) Help; exit 1;;
                 -v | --version) echo "1.0.1"; exit 1;;
                 --) shift; break;;
@@ -78,12 +86,13 @@ while true; do
         esac
 done
 
-# If time is empty
+# 0(true) if time is empty
 [ -z $time ] && time=30
 
 # If no credentials passed but tmp exist
 [ -z $credentials ] && test -f /tmp/PubSound.tmp && main
-[ -z $credentials ] && echo "Credentials missing. Try PubSound -h or PubSound --help for more information." && exit 1
+# If any credential missing
+[ -z $ip ] || [ -z $publisher ] && echo "Any of the credentials missing. Try PubSound -h or PubSound --help for more information." && exit 1
 
 # If credentials exist
 main
